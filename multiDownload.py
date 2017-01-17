@@ -5,12 +5,11 @@ logging.basicConfig(filename = "multiDownload.log", level = logging.DEBUG, forma
 faillist= []
 
 url = "http://xkcd.com/"
-def generateUrl(urlname, *args):
-    return urlname + str(args[0]) + "/"
+
 
 def GetOnePage(comicNum):
     logging.debug("Page {0} Downloading".format(comicNum))    
-    resp = requests.get(generateUrl(url, comicNum))
+    resp = requests.get(url + comicNum + '/')
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "lxml")
     imgurl = soup.select('#comic img')
